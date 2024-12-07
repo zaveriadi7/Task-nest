@@ -1,0 +1,135 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+table, tr,td, th{
+    padding: 30px;
+    margin:30px;
+}
+
+body {
+    background: linear-gradient(135deg,#FFBD73,#C6E7FF,#D4F6FF,#FBFBFB,#FFDDAE);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+}
+
+.container h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.task-form input[type="text"],
+.task-form input[type="date"],
+.task-form button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.task-form input[type="text"] {
+    width: 30%;
+}
+
+.task-form input[type="date"] {
+    width: 30%;
+}
+
+.task-form button {
+    background-color: #4A90E2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.task-form button:hover {
+    background-color: #357ABD;
+}
+
+
+.task-list {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1em;
+}
+
+.task-item span {
+    font-weight: bold;
+}
+
+.task-item-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.task-item select {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.task-item button {
+    background-color: #FF6B6B;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.task-item button.update-btn {
+    background-color: #4A90E2;
+}
+
+.task-item button:hover {
+    background-color: #d9534f;
+}
+
+.task-item button.update-btn:hover {
+    background-color: #357ABD;
+}
+
+@media (max-width: 600px) {
+    .task-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .task-form input[type="text"],
+    .task-form input[type="date"],
+    .task-form button {
+        width: 100%;
+    }
+}
