@@ -43,7 +43,7 @@ const cron = require('node-cron');
 const { sendNotifications } = require('./notificationService');
 
 
-cron.schedule('51 18 * * *', async () => {
+cron.schedule('0 21 * * *', async () => {
     console.log('Running the notification task at 9 PM');
     await sendNotifications();
 });
@@ -54,7 +54,6 @@ const taskroutes = require('./routes/taskroutes');
 app.use('/tasks', taskroutes);
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
-
 
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');

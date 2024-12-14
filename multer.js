@@ -11,24 +11,21 @@ const pool = new Pool({
     password: 'tiger',   
     port: 5432,                  
 });
-
-
-// Multer storage configuration
+//configs
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = './uploads/';
     if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir);  // Create uploads folder 
+      fs.mkdirSync(uploadDir);  // uploads folder  creation
     }
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));  // Add timestamp to file
+    cb(null, Date.now() + path.extname(file.originalname));  // timestamp to file
   },
 });
 
 const upload = multer({ storage: storage });
-// Route to handle file upload
 router.post('tasks/:id/upload', upload.single('file'), async (req, res) => {
   const taskId = req.params.id;
   const filePath = `uploads/${req.file.filename}`;

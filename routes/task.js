@@ -6,6 +6,7 @@ const multer = require('multer');
 const path = require('path');
 const notifier = require('node-notifier');
 notifier.notify('Message');
+
 function isAuthenticated(req, res, next) {
     if (req.session.userId) {
         return next();
@@ -26,8 +27,6 @@ router.get('/', isAuthenticated, async (req, res) => {
             const filesResult = await pool.query('SELECT * FROM task_files WHERE task_id = ANY($1::int[])', [taskIds]);
             files = filesResult.rows;
         }
-
-       
         const filesByTaskId = {};
         tasks.forEach(task => filesByTaskId[task.id] = null);  // Initialize empty values 
         files.forEach(file => {
@@ -123,8 +122,6 @@ router.post('/send-email/:id', isAuthenticated, async (req, res) => {
 });
 router.post('/add-task', isAuthenticated, async (req, res) => {
     const { title, description, dueDate, priority, completed } = req.body;
-    
-    // Convert to  boolean
     const isCompleted = completed === 'on'; // true if checked, false if not
 
     try {

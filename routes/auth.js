@@ -1,7 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const pool = require('../config/db');
-
 const router = express.Router();
 const notifier = require('node-notifier');
 notifier.notify('Message');
@@ -10,7 +9,6 @@ router.get('/register', (req, res) => {
     res.render('register');  
 });
 
-// Register route 
 router.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -38,7 +36,6 @@ router.get('/login', (req, res) => {
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-
     if (result.rows.length > 0) {
         const user = result.rows[0];
         if (await bcrypt.compare(password, user.password)) {
@@ -66,6 +63,7 @@ router.post('/login', async (req, res) => {
 router.get('/delete', (req, res) => {
     res.render('delete'); 
 });
+
 router.post('/delete', async (req, res) => {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
